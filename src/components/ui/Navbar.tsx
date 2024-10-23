@@ -3,6 +3,7 @@ import React from "react";
 import Link from "next/link";
 import SingInButton from "../SingInButton";
 import UserAccountNav from "./UserAccountNav";
+import { ThemeToggle } from "./ThemeToggle";
 
 type Props = {};
 
@@ -17,6 +18,8 @@ const Navbar = async (props: Props) => {
                 Quilzlet
             </p>
             </Link>
+            <div className="flex item-center">
+            <ThemeToggle  className="mr-3" />
     <div className="flex items-center">
             {session?.user ? (
                     <UserAccountNav user={session.user}/>
@@ -24,6 +27,8 @@ const Navbar = async (props: Props) => {
 
             <SingInButton text="Sign in" />
              )}
+            </div>
+             
             </div>        
         </div>
     </div>
