@@ -10,7 +10,7 @@ import RecentActivities from './RecentActivities'
 type Props = {}
 
 export const metadata = {
-    title: "Dashboard | Quizmismurf"
+    title: "Dashboard | skufQuiz",
 }
 
 const Dashboard  = async (props: Props) => {

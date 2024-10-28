@@ -7,7 +7,7 @@ type Props = {}
 
 
 export const metadata = {
-    title: "Quiz | Quizmismurf",
+    title: "Quiz | skufQuiz",
 };
 const QuizPage = async (props: Props) => {
   const session = await getAuthSession();
