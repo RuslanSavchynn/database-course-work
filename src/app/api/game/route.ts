@@ -24,11 +24,13 @@ export async function POST(req: Request, res: Response) {
                 topic
             }
         })
-        const { data } = await axios.post('${process.env.API_URL}/api/questions', {
+        
+        const { data } = await axios.post(`${process.env.API_URL}/api/questions`, {
             amount,
             topic,
             type,
         });
+        
         if (type == 'mcq') {
             type mcqQuestion = {
                 question: string,
