@@ -4,6 +4,7 @@ import { ChevronRight, Timer } from 'lucide-react'
 import React from 'react'
 import { Card, CardDescription, CardHeader, CardTitle } from './card'
 import { Button } from './button';
+import MQCounter from './MQCounter';
 
 type Props = {
     game: Game & { questions: Pick<Question, 'id' | 'options' | 'question'>[] }
@@ -19,22 +20,24 @@ const MCQ = ({ game }: Props) => {
 
     const options = React.useMemo(() => {
         if (!currentQuestion) return []
-        if (!currentQuestion.options) return [] 
+        if (!currentQuestion.options) return []
         return JSON.parse(currentQuestion.options as string) as string[];
     }, [currentQuestion])
     return (
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:w-[80vw] max-w-4xl w-[80vw]'>
             <div className='flex flex-row justify-between'>
-                {/* topic */}
-                <p>
-                    <span className='mr-2 text-slate-400'>Topic</span>
-                    <span className='px-2 py-1 text-white rounded-lg bg-slate-800'>{game.topic}</span>
-                </p>
-                <div className="flex self-start mt-3 text-slate-400">
-                    <Timer className='mr-2' />
-                    <span>00:00</span>
+                <div className="flex flex-col">
+                    {/* topic */}
+                    <p>
+                        <span className='mr-2 text-slate-400'>Topic</span>
+                        <span className='px-2 py-1 text-white rounded-lg bg-slate-800'>{game.topic}</span>
+                    </p>
+                    <div className="flex self-start mt-3 text-slate-400">
+                        <Timer className='mr-2' />
+                        <span>00:00</span>
+                    </div>
                 </div>
-                {/* MCQCounter */}
+                <MQCounter correctAnswers={3} wrongAnswers={5} />
             </div>
             <Card className="w-full mt-4">
                 <CardHeader className="flex flex-row items=center">
@@ -53,28 +56,28 @@ const MCQ = ({ game }: Props) => {
 
             <div className="flex flex-col items-center justify-center w-full mt-4">
                 {options.map((option, index) => {
-                    return(
+                    return (
                         <Button
-                         key={index}
-                        variant={selectedChoice === index ? 'default' : 'secondary'}
-                        className='justify-start w-full py-8 mb-4'
-                        
-                        onClick={() => setSelectedChoice(index)}
+                            key={index}
+                            variant={selectedChoice === index ? 'default' : 'secondary'}
+                            className='justify-start w-full py-8 mb-4'
+
+                            onClick={() => setSelectedChoice(index)}
                         >
                             <div className="flex items-center justify-start">
-                              <div className="p-2 px-3 mr-5 border rounded-md">
-                                {index + 1}
-                                </div> 
-                                <div className="text-start">{option}</div> 
+                                <div className="p-2 px-3 mr-5 border rounded-md">
+                                    {index + 1}
+                                </div>
+                                <div className="text-start">{option}</div>
                             </div>
                         </Button>
                     )
                 }
-            )}
-            
-            <Button className='mt-2'>
-                Next <ChevronRight className='w-4 h-4 ml-2' />
-            </Button>
+                )}
+
+                <Button className='mt-2'>
+                    Next <ChevronRight className='w-4 h-4 ml-2' />
+                </Button>
             </div>
         </div>
     )
