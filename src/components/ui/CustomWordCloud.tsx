@@ -16,7 +16,9 @@ const fontSizeMapper = (word: {value: number}) => {
 }
 
 const CustomWordCloud = (props: Props) => {
-        const theme = useTheme()
+        const {theme,systemTheme} = useTheme();
+        const currentTheme = theme == 'system' ? systemTheme : theme;
+
     return (
     <>
     <D3WordCloud 
@@ -26,7 +28,7 @@ const CustomWordCloud = (props: Props) => {
     fontSize={fontSizeMapper}
     rotate={0}
     padding={10}
-    fill = {theme.theme == 'dark' ?'white':"black"}
+    fill = {currentTheme == 'dark' ?'white':"black"}
     />
     </>
   )
