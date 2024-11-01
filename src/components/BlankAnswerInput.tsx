@@ -2,9 +2,10 @@ import React from 'react'
 import keyword_extractor from 'keyword-extractor'
 type Props = {
   answer: string,
+  setBlankAnswer: React.Dispatch<React.SetStateAction<string>>
 }
 const BLANKS = '_____'
-const BlankAnswerInput = ({ answer }: Props) => {
+const BlankAnswerInput = ({ answer, setBlankAnswer }: Props) => {
   const keywords = React.useMemo(() => {
     const word = keyword_extractor.extract(answer, {
       language: "english",
@@ -21,8 +22,9 @@ const BlankAnswerInput = ({ answer }: Props) => {
     const answerWithBlanks = keywords.reduce((acc, keyword) => {
       return acc.replace(keyword, BLANKS)
     }, answer)
+    setBlankAnswer(answerWithBlanks)
     return answerWithBlanks;
-  }, [keywords, answer])
+  }, [keywords, answer, setBlankAnswer])
 
 
   return (
