@@ -15,7 +15,7 @@ const QuestionList = ({ questions }: Props) => {
             <TableHeader>
                 <TableRow>
                     <TableHead className='w-[10px]'>№</TableHead>
-                    <TableHead>Question & Correct Asnwer</TableHead>
+                    <TableHead>Questions & Correct Answer</TableHead>
                     <TableHead>Your Answer</TableHead>
                     {gameType === 'open_ended' && (
                         <TableHead className='w-[10px] text-right'>Accuracy</TableHead>
