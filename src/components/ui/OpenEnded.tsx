@@ -56,7 +56,7 @@ const OpenEnded = ({game}: Props) => {
             onSuccess: ({ percentageSimilar }) => {
                 toast({
                     title: `Your answer is ${percentageSimilar}% similar to the correct answer`,
-                    description: 'Answers are matched based on similarity comparisons',
+                    description: 'Correct answer is: ' + currentQuestion.answer,
                 })
                 
                 if (questionIndex === game.questions.length - 1) {
@@ -116,13 +116,13 @@ const OpenEnded = ({game}: Props) => {
 
     <div className="flex flex-col items-center justify-center w-full mt-4">
         
-        <BlankAnswerInput />
+        <BlankAnswerInput answer={currentQuestion.answer} />
         <Button className='mt-2' 
         disabled={isChecking}
         onClick={() => {
             handleNext()
         }}>
-            {isChecking && <Loader2 className='w-4 h-4 mr-2 animated-spin'/>}
+            {isChecking && <Loader2 className='w-4 h-4 mr-2 animated-spin mr'/>}
             Next <ChevronRight className='w-4 h-4 ml-2' />
         </Button>
     </div>
